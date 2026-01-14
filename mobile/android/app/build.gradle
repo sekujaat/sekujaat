@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace "com.synceclean"        // yahan apna current package name daal
+    namespace "com.syncecleaner"          // yahi rakho, tumhari file me bhi yehi hai
     compileSdkVersion 36
 
     defaultConfig {
-        applicationId "com.synceclean"
+        applicationId "com.syncecleaner"
         minSdkVersion 23
         targetSdkVersion 36
         versionCode 1
