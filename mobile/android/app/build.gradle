@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace "com.syncecleaner"          // yahi rakho, tumhari file me bhi yehi hai
+    namespace "com.syncecleaner"
     compileSdkVersion 34
 
     defaultConfig {
@@ -13,6 +13,16 @@ android {
         targetSdkVersion 34
         versionCode 1
         versionName "1.0"
+    }
+
+    // JVM target mismatch fix
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 
     signingConfigs {
