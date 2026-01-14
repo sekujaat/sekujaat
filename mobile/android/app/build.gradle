@@ -1,19 +1,24 @@
+plugins {
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+}
+
 android {
     namespace "com.syncecleaner"
-    compileSdkVersion 34
+    compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
         applicationId "com.syncecleaner"
-        minSdkVersion 24
-        targetSdkVersion 34
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
     }
 
-    // JVM target 17 for both Java & Kotlin
+    // --- JVM target: Java 17 / Kotlin 17 (IMPORTANT) ---
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility rootProject.ext.jvmTarget   // JavaVersion.VERSION_17
+        targetCompatibility rootProject.ext.jvmTarget   // JavaVersion.VERSION_17
     }
 
     kotlinOptions {
@@ -24,6 +29,7 @@ android {
         buildConfig = true
     }
 
+    // New architecture flag ko BuildConfig se control karo
     buildTypes {
         release {
             buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", "false"
@@ -53,4 +59,11 @@ android {
             keyPassword System.getenv("UPLOAD_KEY_PASSWORD") ?: "abc1234"
         }
     }
+}
+
+dependencies {
+    implementation("com.facebook.react:react-android:0.76.5")
+    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.11.0")
 }
