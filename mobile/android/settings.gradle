@@ -12,8 +12,4 @@ plugins {
 
 rootProject.name = "SynceMono"
 
-// React Native projects ko include karo
 include(":app")
-
-// React settings plugin ko apply karo
-apply(plugin = "com.facebook.react.settings")
