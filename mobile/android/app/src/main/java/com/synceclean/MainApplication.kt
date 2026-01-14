@@ -7,10 +7,12 @@ import com.facebook.react.ReactPackage
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint
 import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.soloader.SoLoader
+import com.syncecleaner.BuildConfig   // IMPORTANT: correct package for BuildConfig
 
 class MainApplication : Application(), ReactApplication {
 
-    private val mReactNativeHost: ReactNativeHost =
+    // ReactApplication ke liye EXACT property name "reactNativeHost" hona chahiye
+    override val reactNativeHost: ReactNativeHost =
         object : DefaultReactNativeHost(this) {
 
             override fun getPackages(): List<ReactPackage> {
@@ -21,13 +23,11 @@ class MainApplication : Application(), ReactApplication {
             override fun getUseDeveloperSupport(): Boolean = BuildConfig.DEBUG
 
             override val isNewArchEnabled: Boolean
-                get() = false
+                get() = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED
 
             override val isHermesEnabled: Boolean
-                get() = true
+                get() = BuildConfig.IS_HERMES_ENABLED
         }
-
-    override fun getReactNativeHost(): ReactNativeHost = mReactNativeHost
 
     override fun onCreate() {
         super.onCreate()
