@@ -25,6 +25,11 @@ android {
         jvmTarget = "1.8"
     }
 
+    // IMPORTANT: BuildConfig generate karne ke liye
+    buildFeatures {
+        buildConfig = true
+    }
+
     signingConfigs {
         release {
             storeFile file("upload-keystore.jks")
