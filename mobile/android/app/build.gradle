@@ -9,16 +9,16 @@ android {
 
     defaultConfig {
         applicationId "com.syncecleaner"
-        minSdkVersion rootProject.ext.minSdkVersion
+        minSdkVersion rootProject.ext.minSdkVersion   // 24
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
     }
 
-    // --- JVM target: Java 17 / Kotlin 17 (IMPORTANT) ---
+    // JVM target Java 17 / Kotlin 17
     compileOptions {
-        sourceCompatibility rootProject.ext.jvmTarget   // JavaVersion.VERSION_17
-        targetCompatibility rootProject.ext.jvmTarget   // JavaVersion.VERSION_17
+        sourceCompatibility rootProject.ext.jvmTarget
+        targetCompatibility rootProject.ext.jvmTarget
     }
 
     kotlinOptions {
@@ -29,7 +29,7 @@ android {
         buildConfig = true
     }
 
-    // New architecture flag ko BuildConfig se control karo
+    // New architecture flag (optional)
     buildTypes {
         release {
             buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", "false"
