@@ -18,8 +18,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Keystore ko decode karke app folder me daalo
-          - name: Decode upload keystore
+      # Keystore ko decode karke app folder me likho
+      - name: Decode upload keystore
         run: |
           mkdir -p app
           cat << 'EOF' | base64 -d > app/upload-keystore.jks
@@ -45,12 +45,20 @@ EOF
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
 
+      # Optional: alias check (first runs me rakh sakte ho)
+      - name: Check keystore alias
+        run: |
+          echo "$UPLOAD_STORE_PASSWORD" | keytool -v -list \
+            -keystore app/upload-keystore.jks \
+            -storepass "$UPLOAD_STORE_PASSWORD" | head
+        env:
+          UPLOAD_STORE_PASSWORD: ${{ secrets.UPLOAD_STORE_PASSWORD }}
+
       - name: Build Android Release (signed)
         env:
-          # ye env exactly build.gradle ke saath match karte hain
           UPLOAD_STORE_PASSWORD: ${{ secrets.UPLOAD_STORE_PASSWORD }}
           UPLOAD_KEY_PASSWORD: ${{ secrets.UPLOAD_KEY_PASSWORD }}
-          UPLOAD_KEY_ALIAS: ${{ secrets.UPLOAD_KEY_ALIAS }}   # value = "upload"
+          UPLOAD_KEY_ALIAS: ${{ secrets.UPLOAD_KEY_ALIAS }}
         run: ./gradlew clean assembleRelease
 
       - name: Upload Release APK
