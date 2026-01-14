@@ -28,20 +28,17 @@ android {
         buildConfig = true
     }
 
-    // ---- SIGNING CONFIGS (UPLOAD KEY) ----
     signingConfigs {
         release {
-            // yahi file app/ ke andar hai
             storeFile file("upload-keystore.jks")
-            // CI (GitHub) me env se uthayega, local pe default password use karega
             storePassword System.getenv("UPLOAD_STORE_PASSWORD") ?: "abc1234"
-            keyAlias System.getenv("UPLOAD_KEY_ALIAS") ?: "upload"
+            keyAlias System.getenv("UPLOAD_KEY_ALIAS") ?: "syncekey"
             keyPassword System.getenv("UPLOAD_KEY_PASSWORD") ?: "abc1234"
         }
         debug {
             storeFile file("upload-keystore.jks")
             storePassword System.getenv("UPLOAD_STORE_PASSWORD") ?: "abc1234"
-            keyAlias System.getenv("UPLOAD_KEY_ALIAS") ?: "upload"
+            keyAlias System.getenv("UPLOAD_KEY_ALIAS") ?: "syncekey"
             keyPassword System.getenv("UPLOAD_KEY_PASSWORD") ?: "abc1234"
         }
     }
