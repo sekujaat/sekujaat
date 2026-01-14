@@ -19,12 +19,12 @@ jobs:
         uses: actions/checkout@v4
 
       # Keystore ko decode karke app folder me daalo
-      - name: Decode upload keystore
+          - name: Decode upload keystore
         run: |
           mkdir -p app
-          echo "$UPLOAD_KEYSTORE_BASE64" | base64 -d > app/upload-keystore.jks
-        env:
-          UPLOAD_KEYSTORE_BASE64: ${{ secrets.UPLOAD_KEYSTORE_BASE64 }}
+          cat << 'EOF' | base64 -d > app/upload-keystore.jks
+${{ secrets.UPLOAD_KEYSTORE_BASE64 }}
+EOF
 
       - name: Set up JDK
         uses: actions/setup-java@v4
