@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace "com.syncecleaner"          // yahi rakho, tumhari file me bhi yehi hai
-    compileSdkVersion 36
+    compileSdkVersion 34
 
     defaultConfig {
         applicationId "com.syncecleaner"
         minSdkVersion 24
-        targetSdkVersion 36
+        targetSdkVersion 34
         versionCode 1
         versionName "1.0"
     }
