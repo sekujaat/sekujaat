@@ -9,18 +9,12 @@ android {
 
     defaultConfig {
         applicationId "com.syncecleaner"
-
-        // ********** BOHOT IMPORTANT **********
-        // Yahi value react-android (0.76.5) se match honi chahiye
         minSdkVersion 24
-        // *************************************
-
         targetSdkVersion 34
         versionCode 1
         versionName "1.0"
     }
 
-    // JVM target Java 17 / Kotlin 17
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
