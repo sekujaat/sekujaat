@@ -1,14 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.syncecleaner">
 
-    <!-- IMPORTANT: yahan koi <uses-sdk> tag NAHI hoga.
-         MinSdkVersion sirf Gradle (build.gradle) se aayega. -->
-
     <application
         android:name=".MainApplication"
         android:label="Synce Cleaner"
-        android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@mipmap/ic_launcher"        <!-- IMPORTANT -->
+        android:roundIcon="@mipmap/ic_launcher"   <!-- safe default -->
         android:allowBackup="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
