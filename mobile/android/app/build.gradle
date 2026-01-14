@@ -1,8 +1,3 @@
-plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-}
-
 android {
     namespace "com.syncecleaner"
     compileSdkVersion 34
@@ -15,23 +10,22 @@ android {
         versionName "1.0"
     }
 
+    // JVM target 17 for both Java & Kotlin
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 
     buildFeatures {
         buildConfig = true
     }
 
-    // optional: agar BuildConfig flag use karna chaho
     buildTypes {
         release {
-            // BuildConfig.IS_NEW_ARCHITECTURE_ENABLED = false
             buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", "false"
             minifyEnabled false
             shrinkResources false
@@ -59,11 +53,4 @@ android {
             keyPassword System.getenv("UPLOAD_KEY_PASSWORD") ?: "abc1234"
         }
     }
-}
-
-dependencies {
-    implementation("com.facebook.react:react-android:0.76.5")
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.11.0")
 }
