@@ -18,7 +18,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Keystore ko decode karke app folder me likho
+      # 4) JS dependencies install (REQUIRED)
+      - name: Install JS dependencies
+        working-directory: mobile    # yahan package.json hai
+        run: npm ci
+
       - name: Decode upload keystore
         run: |
           mkdir -p app
@@ -44,15 +48,6 @@ EOF
 
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
-
-      # Optional: alias check (first runs me rakh sakte ho)
-      - name: Check keystore alias
-        run: |
-          echo "$UPLOAD_STORE_PASSWORD" | keytool -v -list \
-            -keystore app/upload-keystore.jks \
-            -storepass "$UPLOAD_STORE_PASSWORD" | head
-        env:
-          UPLOAD_STORE_PASSWORD: ${{ secrets.UPLOAD_STORE_PASSWORD }}
 
       - name: Build Android Release (signed)
         env:
