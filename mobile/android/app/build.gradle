@@ -25,23 +25,25 @@ android {
         jvmTarget = "1.8"
     }
 
-    // IMPORTANT: BuildConfig generate karne ke liye
+    // BuildConfig generate karne ke liye
     buildFeatures {
         buildConfig = true
     }
 
     signingConfigs {
         release {
+            // yahi wali file tumne banayi hai
             storeFile file("upload-keystore.jks")
-            storePassword System.getenv("KEY_STORE_PASSWORD")
-            keyAlias System.getenv("ALIAS")
-            keyPassword System.getenv("KEY_PASSWORD")
+            storePassword System.getenv("KEY_STORE_PASSWORD") ?: "abc1234"
+            keyAlias System.getenv("ALIAS") ?: "giplab"
+            keyPassword System.getenv("KEY_PASSWORD") ?: "abc1234"
         }
         debug {
-            storeFile file("debug.keystore")
-            storePassword "android"
-            keyAlias "androiddebugkey"
-            keyPassword "android"
+            // debug ke liye bhi wahi keystore use karwa dete hain
+            storeFile file("upload-keystore.jks")
+            storePassword System.getenv("KEY_STORE_PASSWORD") ?: "abc1234"
+            keyAlias System.getenv("ALIAS") ?: "giplab"
+            keyPassword System.getenv("KEY_PASSWORD") ?: "abc1234"
         }
     }
 
