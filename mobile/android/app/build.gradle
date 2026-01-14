@@ -15,7 +15,6 @@ android {
         versionName "1.0"
     }
 
-    // JVM target mismatch fix
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -25,25 +24,25 @@ android {
         jvmTarget = "1.8"
     }
 
-    // BuildConfig generate karne ke liye
     buildFeatures {
         buildConfig = true
     }
 
+    // ---- SIGNING CONFIGS (UPLOAD KEY) ----
     signingConfigs {
         release {
-            // yahi wali file tumne banayi hai
+            // yahi file app/ ke andar hai
             storeFile file("upload-keystore.jks")
-            storePassword System.getenv("KEY_STORE_PASSWORD") ?: "abc1234"
-            keyAlias System.getenv("ALIAS") ?: "giplab"
-            keyPassword System.getenv("KEY_PASSWORD") ?: "abc1234"
+            // CI (GitHub) me env se uthayega, local pe default password use karega
+            storePassword System.getenv("UPLOAD_STORE_PASSWORD") ?: "abc1234"
+            keyAlias System.getenv("UPLOAD_KEY_ALIAS") ?: "upload"
+            keyPassword System.getenv("UPLOAD_KEY_PASSWORD") ?: "abc1234"
         }
         debug {
-            // debug ke liye bhi wahi keystore use karwa dete hain
             storeFile file("upload-keystore.jks")
-            storePassword System.getenv("KEY_STORE_PASSWORD") ?: "abc1234"
-            keyAlias System.getenv("ALIAS") ?: "giplab"
-            keyPassword System.getenv("KEY_PASSWORD") ?: "abc1234"
+            storePassword System.getenv("UPLOAD_STORE_PASSWORD") ?: "abc1234"
+            keyAlias System.getenv("UPLOAD_KEY_ALIAS") ?: "upload"
+            keyPassword System.getenv("UPLOAD_KEY_PASSWORD") ?: "abc1234"
         }
     }
 
