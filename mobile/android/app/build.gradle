@@ -28,21 +28,6 @@ android {
         buildConfig = true
     }
 
-    buildTypes {
-        release {
-            buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", "false"
-            minifyEnabled false
-            shrinkResources false
-            signingConfig signingConfigs.release
-        }
-        debug {
-            buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", "false"
-            minifyEnabled false
-            shrinkResources false
-            signingConfig signingConfigs.debug
-        }
-    }
-
     signingConfigs {
         release {
             storeFile file("upload-keystore.jks")
@@ -57,9 +42,25 @@ android {
             keyPassword System.getenv("UPLOAD_KEY_PASSWORD") ?: "abc1234"
         }
     }
+
+    buildTypes {
+        release {
+            buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", "false"
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.release
+        }
+        debug {
+            buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", "false"
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.debug
+        }
+    }
 }
 
 dependencies {
+    // Yahi 4 lines rakho, koi extra module()/project() vagaira nahi
     implementation("com.facebook.react:react-android:0.76.5")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
