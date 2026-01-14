@@ -23,5 +23,8 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        maven { url "https://repo.maven.apache.org/maven2" }
+        maven { url "https://www.jitpack.io" }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     }
 }
