@@ -28,6 +28,23 @@ android {
         buildConfig = true
     }
 
+    // optional: agar BuildConfig flag use karna chaho
+    buildTypes {
+        release {
+            // BuildConfig.IS_NEW_ARCHITECTURE_ENABLED = false
+            buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", "false"
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.release
+        }
+        debug {
+            buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", "false"
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.debug
+        }
+    }
+
     signingConfigs {
         release {
             storeFile file("upload-keystore.jks")
@@ -40,19 +57,6 @@ android {
             storePassword System.getenv("UPLOAD_STORE_PASSWORD") ?: "abc1234"
             keyAlias System.getenv("UPLOAD_KEY_ALIAS") ?: "syncekey"
             keyPassword System.getenv("UPLOAD_KEY_PASSWORD") ?: "abc1234"
-        }
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            shrinkResources false
-            signingConfig signingConfigs.release
-        }
-        debug {
-            minifyEnabled false
-            shrinkResources false
-            signingConfig signingConfigs.debug
         }
     }
 }
